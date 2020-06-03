@@ -1,0 +1,17 @@
+#include <SoftwareSerial.h>
+#define LED 5
+
+SoftwareSerial btSerial(12, 1); //RX, TX
+
+void setup() {
+  btSerial.begin(9600);
+}
+
+void loop() {
+  if (btSerial.available()) {
+    if (btSerial.read() == 'a') {
+      int brightness = btSerial.parseInt();
+      analogWrite(LED, brightness);
+    }
+  }
+}
